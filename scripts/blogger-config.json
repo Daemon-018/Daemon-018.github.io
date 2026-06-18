@@ -1,5 +1,9 @@
 {
+    "api_key_encoded": "",
+    "model": "openrouter/auto",
+    "base_url": "https://openrouter.ai/api/v1/chat/completions",
     "blog_id": "7575996900672024605",
     "blog_url": "https://daemon018.blogspot.com",
-    "blog_name": "daemon018"
+    "blog_name": "daemon018",
+    "site_url": "https://daemon018.blogspot.com"
 }

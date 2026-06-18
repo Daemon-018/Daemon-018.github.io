@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 SecHunter AI Blog Generator — Production Version
-- Uses OpenRouter (owl-alpha) to generate 2500-3500 word SEO posts
+- Uses OpenRouter (auto) to generate 2500-3500 word SEO posts
 - Integrates latest cybersecurity news from 8 sources
 - Outputs markdown ready for Hugo/Blogger
 
@@ -29,7 +29,7 @@ CONFIG_FILE = os.path.join(SCRIPT_DIR, "config.json")
 def load_config():
     defaults = {
         "api_key": "",
-        "model": "openrouter/owl-alpha",
+        "model": "liquid/lfm-2.5-1.2b-instruct:free",
         "base_url": "https://openrouter.ai/api/v1/chat/completions",
         "blog_id": "7575996900672024605",
         "blog_url": "https://daemon018.blogspot.com",
@@ -575,10 +575,16 @@ def generate_content(topic, category, news_context, config):
     
     api_key = config.get("api_key", "")
     if not api_key:
-        print("ERROR: No API key in config!")
+        # Read from token file
+        token_file = os.path.join(os.path.expanduser("~"), ".or_token")
+        if os.path.exists(token_file):
+            with open(token_file) as f:
+                api_key = f.read().strip()
+    if not api_key:
+        print("ERROR: No API key found!")
         return None, 0
     
-    model = config.get("model", "openrouter/owl-alpha")
+    model = config.get("model", "liquid/lfm-2.5-1.2b-instruct:free")
     site_url = config.get("site_url", "https://sechunter.github.io")
     
     prompt = f"""You are an expert cybersecurity researcher, bug bounty hunter, and professional content writer for SecHunter blog.
@@ -699,7 +705,7 @@ def main():
     
     print("=" * 60)
     print("  SecHunter AI Blog Generator")
-    print("  Model: openrouter/owl-alpha")
+    print("  Model: liquid/lfm-2.5-1.2b-instruct:free")
     print("=" * 60)
     
     config = load_config()
@@ -722,7 +728,7 @@ def main():
     print(f"News context: {len(news_context)} chars")
     
     # Generate content
-    model = config.get("model", "openrouter/owl-alpha")
+    model = config.get("model", "liquid/lfm-2.5-1.2b-instruct:free")
     print(f"\nGenerating content via OpenRouter ({model})...")
     content, tokens = generate_content(topic, category, news_context, config)
     
