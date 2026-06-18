@@ -1,0 +1,21 @@
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "SecHunter",
+  "url": "https://sechunter.github.io",
+  "description": "Bug Bounty, Penetration Testing, AI Security, and Cybersecurity Research",
+  "publisher": {
+    "@type": "Organization",
+    "name": "SecHunter",
+    "url": "https://sechunter.github.io",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://sechunter.github.io/images/logo.png"
+    }
+  },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://sechunter.github.io/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}

@@ -1,0 +1,40 @@
+[2026-06-17 20:24:39] ============================================================
+[2026-06-17 20:24:39] SecHunter AI Blog Engine — Starting
+[2026-06-17 20:24:39] Date: 2026-06-17 | Model: openrouter/owl-alpha
+[2026-06-17 20:24:39] ============================================================
+[2026-06-17 20:24:39] Researching latest cybersecurity news...
+[2026-06-17 20:24:46] News research complete: 5 CVEs, 5 THN, 0 BleepingComputer
+[2026-06-17 20:24:46] Today's topic: Advanced Tools — Deep Dive Day 168 (Tools)
+[2026-06-17 20:24:46] Generating post: Advanced Tools — Deep Dive Day 168 (Tools)
+[2026-06-17 20:24:46] HTTP Error 401: {"error":{"message":"Missing Authentication header","code":401}}
+[2026-06-17 20:24:46] ERROR: Failed to generate content
+[2026-06-17 20:24:46] ERROR: Failed to generate post. Will retry next run.
+[2026-06-17 20:29:21] ============================================================
+[2026-06-17 20:29:21] SecHunter AI Blog Engine — Starting
+[2026-06-17 20:29:21] Date: 2026-06-17 | Model: openrouter/owl-alpha
+[2026-06-17 20:29:21] ============================================================
+[2026-06-17 20:29:21] Researching latest cybersecurity news...
+[2026-06-17 20:29:27] News research complete: 5 CVEs, 5 THN, 0 BleepingComputer
+[2026-06-17 20:29:27] Today's topic: Advanced Tools — Deep Dive Day 168 (Tools)
+[2026-06-17 20:29:27] Generating post: Advanced Tools — Deep Dive Day 168 (Tools)
+[2026-06-17 20:29:27] HTTP Error 401: {"error":{"message":"Missing Authentication header","code":401}}
+[2026-06-17 20:29:27] ERROR: Failed to generate content
+[2026-06-17 20:29:27] ERROR: Failed to generate post. Will retry next run.
+[2026-06-17 20:33:06] ============================================================
+[2026-06-17 20:33:06] SecHunter AI Blog Engine — Starting
+[2026-06-17 20:33:06] Date: 2026-06-17 | Model: openrouter/owl-alpha
+[2026-06-17 20:33:06] ============================================================
+[2026-06-17 20:33:06] Researching latest cybersecurity news...
+[2026-06-17 20:33:09] News research complete: 5 CVEs, 5 THN, 0 BleepingComputer
+[2026-06-17 20:33:09] Today's topic: Advanced Tools — Deep Dive Day 168 (Tools)
+[2026-06-17 20:33:09] Generating post: Advanced Tools — Deep Dive Day 168 (Tools)
+[2026-06-17 20:35:37] Post generated: 3701 words approximately
+[2026-06-17 20:35:37] Post written to: /data/data/com.termux/files/home/sec-hunter-blog/content/posts/2026-06-17-advanced-tools---deep-dive-day-168.md
+[2026-06-17 20:35:37] Building Hugo site...
+[2026-06-17 20:35:38] Hugo build successful
+[2026-06-17 20:35:38] Deploying to GitHub...
+[2026-06-17 20:36:08] Deploy error: Command '['git', 'add', '-A']' timed out after 30 seconds
+[2026-06-17 20:36:08] ============================================================
+[2026-06-17 20:36:08] Daily run COMPLETE!
+[2026-06-17 20:36:08] Post: /data/data/com.termux/files/home/sec-hunter-blog/content/posts/2026-06-17-advanced-tools---deep-dive-day-168.md
+[2026-06-17 20:36:08] ============================================================

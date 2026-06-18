@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Idor on SecHunter — Bug Bounty &amp; Security Research</title><link>https://sechunter.github.io/tags/idor/</link><description>Recent content in Idor on SecHunter — Bug Bounty &amp; Security Research</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 17 Jun 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://sechunter.github.io/tags/idor/index.xml" rel="self" type="application/rss+xml"/><item><title>How I Found My First $500 Bug — IDOR on a Popular Platform</title><link>https://sechunter.github.io/writeups/first-500-bounty/</link><pubDate>Wed, 17 Jun 2026 00:00:00 +0000</pubDate><guid>https://sechunter.github.io/writeups/first-500-bounty/</guid><description>&lt;h1 id="how-i-found-my-first-500-bug"&gt;How I Found My First $500 Bug&lt;/h1&gt;
+&lt;p&gt;Everyone remembers their first bounty. Here&amp;rsquo;s how I found an IDOR vulnerability that earned me $500 on my first serious hunting attempt.&lt;/p&gt;
+&lt;h2 id="the-target"&gt;The Target&lt;/h2&gt;
+&lt;p&gt;A popular SaaS platform with a bug bounty program on HackerOne. The program had a $500 minimum bounty for medium-severity findings.&lt;/p&gt;
+&lt;h2 id="the-recon"&gt;The Recon&lt;/h2&gt;
+&lt;p&gt;I started by creating two accounts:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Account A&lt;/strong&gt; (attacker): &lt;a href="mailto:testuser1@mailinator.com"&gt;testuser1@mailinator.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Account B&lt;/strong&gt; (victim): &lt;a href="mailto:testuser2@mailinator.com"&gt;testuser2@mailinator.com&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I mapped the application by browsing every feature:&lt;/p&gt;</description></item><item><title>IDOR Hunting Methodology — How to Find Insecure Direct Object References</title><link>https://sechunter.github.io/bug-bounty/idor-methodology/</link><pubDate>Wed, 17 Jun 2026 00:00:00 +0000</pubDate><guid>https://sechunter.github.io/bug-bounty/idor-methodology/</guid><description>&lt;h1 id="idor-hunting-methodology"&gt;IDOR Hunting Methodology&lt;/h1&gt;
+&lt;p&gt;IDOR (Insecure Direct Object Reference) is the #1 most rewarded vulnerability class in bug bounty programs. It&amp;rsquo;s simple to find, easy to explain, and has high impact.&lt;/p&gt;
+&lt;h2 id="what-is-idor"&gt;What is IDOR?&lt;/h2&gt;
+&lt;p&gt;IDOR occurs when an application uses user-supplied input to directly access an object without verifying that the user is authorized to access it.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Example:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;button class="code-copy" type="button" hidden aria-label="Copy code to clipboard"&gt;
+ &lt;span class="code-copy-label" aria-hidden="true"&gt;Copy&lt;/span&gt;
+ &lt;/button&gt;
+ &lt;pre tabindex="0"&gt;&lt;code&gt;# Your own profile
+GET /api/users/1234/profile → 200 OK (your data)
+
+# Attacker changes ID
+GET /api/users/1235/profile → 200 OK (someone else&amp;#39;s data!)&lt;/code&gt;&lt;/pre&gt;
+ &lt;/div&gt;&lt;h2 id="why-idor-pays-so-well"&gt;Why IDOR Pays So Well&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;High impact:&lt;/strong&gt; Access to other users&amp;rsquo; private data&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Easy to demonstrate:&lt;/strong&gt; Just change a number&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Consistent payouts:&lt;/strong&gt; $500-$25,000 across platforms&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;High frequency:&lt;/strong&gt; Found in almost every web application&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="types-of-idor"&gt;Types of IDOR&lt;/h2&gt;
+&lt;h3 id="1-horizontal-idor"&gt;1. Horizontal IDOR&lt;/h3&gt;
+&lt;p&gt;Access another user&amp;rsquo;s data at the same privilege level.&lt;/p&gt;</description></item></channel></rss>

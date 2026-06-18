@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>First-Bounty on SecHunter — Bug Bounty &amp; Security Research</title><link>https://sechunter.github.io/tags/first-bounty/</link><description>Recent content in First-Bounty on SecHunter — Bug Bounty &amp; Security Research</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 17 Jun 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://sechunter.github.io/tags/first-bounty/index.xml" rel="self" type="application/rss+xml"/><item><title>How I Found My First $500 Bug — IDOR on a Popular Platform</title><link>https://sechunter.github.io/writeups/first-500-bounty/</link><pubDate>Wed, 17 Jun 2026 00:00:00 +0000</pubDate><guid>https://sechunter.github.io/writeups/first-500-bounty/</guid><description>&lt;h1 id="how-i-found-my-first-500-bug"&gt;How I Found My First $500 Bug&lt;/h1&gt;
+&lt;p&gt;Everyone remembers their first bounty. Here&amp;rsquo;s how I found an IDOR vulnerability that earned me $500 on my first serious hunting attempt.&lt;/p&gt;
+&lt;h2 id="the-target"&gt;The Target&lt;/h2&gt;
+&lt;p&gt;A popular SaaS platform with a bug bounty program on HackerOne. The program had a $500 minimum bounty for medium-severity findings.&lt;/p&gt;
+&lt;h2 id="the-recon"&gt;The Recon&lt;/h2&gt;
+&lt;p&gt;I started by creating two accounts:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Account A&lt;/strong&gt; (attacker): &lt;a href="mailto:testuser1@mailinator.com"&gt;testuser1@mailinator.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Account B&lt;/strong&gt; (victim): &lt;a href="mailto:testuser2@mailinator.com"&gt;testuser2@mailinator.com&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I mapped the application by browsing every feature:&lt;/p&gt;</description></item></channel></rss>

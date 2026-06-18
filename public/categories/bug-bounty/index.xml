@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Bug Bounty on SecHunter — Bug Bounty &amp; Security Research</title><link>https://sechunter.github.io/categories/bug-bounty/</link><description>Recent content in Bug Bounty on SecHunter — Bug Bounty &amp; Security Research</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 17 Jun 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://sechunter.github.io/categories/bug-bounty/index.xml" rel="self" type="application/rss+xml"/><item><title>How I Found My First $500 Bug — IDOR on a Popular Platform</title><link>https://sechunter.github.io/writeups/first-500-bounty/</link><pubDate>Wed, 17 Jun 2026 00:00:00 +0000</pubDate><guid>https://sechunter.github.io/writeups/first-500-bounty/</guid><description>&lt;h1 id="how-i-found-my-first-500-bug"&gt;How I Found My First $500 Bug&lt;/h1&gt;
+&lt;p&gt;Everyone remembers their first bounty. Here&amp;rsquo;s how I found an IDOR vulnerability that earned me $500 on my first serious hunting attempt.&lt;/p&gt;
+&lt;h2 id="the-target"&gt;The Target&lt;/h2&gt;
+&lt;p&gt;A popular SaaS platform with a bug bounty program on HackerOne. The program had a $500 minimum bounty for medium-severity findings.&lt;/p&gt;
+&lt;h2 id="the-recon"&gt;The Recon&lt;/h2&gt;
+&lt;p&gt;I started by creating two accounts:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Account A&lt;/strong&gt; (attacker): &lt;a href="mailto:testuser1@mailinator.com"&gt;testuser1@mailinator.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Account B&lt;/strong&gt; (victim): &lt;a href="mailto:testuser2@mailinator.com"&gt;testuser2@mailinator.com&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I mapped the application by browsing every feature:&lt;/p&gt;</description></item><item><title>How to Start Bug Bounty Hunting in 2026 — Complete Beginner Guide</title><link>https://sechunter.github.io/bug-bounty/beginner-guide/</link><pubDate>Wed, 17 Jun 2026 00:00:00 +0000</pubDate><guid>https://sechunter.github.io/bug-bounty/beginner-guide/</guid><description>&lt;h1 id="how-to-start-bug-bounty-hunting-in-2026"&gt;How to Start Bug Bounty Hunting in 2026&lt;/h1&gt;
+&lt;p&gt;Bug bounty hunting is one of the best ways to earn money using security skills. Companies pay you to find vulnerabilities in their software. No degree required. No experience needed. Just skills and persistence.&lt;/p&gt;
+&lt;h2 id="what-is-bug-bounty"&gt;What is Bug Bounty?&lt;/h2&gt;
+&lt;p&gt;Bug bounty programs are deals offered by companies where they pay security researchers for finding and reporting vulnerabilities. You find a bug, report it, and get paid.&lt;/p&gt;</description></item><item><title>IDOR Hunting Methodology — How to Find Insecure Direct Object References</title><link>https://sechunter.github.io/bug-bounty/idor-methodology/</link><pubDate>Wed, 17 Jun 2026 00:00:00 +0000</pubDate><guid>https://sechunter.github.io/bug-bounty/idor-methodology/</guid><description>&lt;h1 id="idor-hunting-methodology"&gt;IDOR Hunting Methodology&lt;/h1&gt;
+&lt;p&gt;IDOR (Insecure Direct Object Reference) is the #1 most rewarded vulnerability class in bug bounty programs. It&amp;rsquo;s simple to find, easy to explain, and has high impact.&lt;/p&gt;
+&lt;h2 id="what-is-idor"&gt;What is IDOR?&lt;/h2&gt;
+&lt;p&gt;IDOR occurs when an application uses user-supplied input to directly access an object without verifying that the user is authorized to access it.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Example:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;button class="code-copy" type="button" hidden aria-label="Copy code to clipboard"&gt;
+ &lt;span class="code-copy-label" aria-hidden="true"&gt;Copy&lt;/span&gt;
+ &lt;/button&gt;
+ &lt;pre tabindex="0"&gt;&lt;code&gt;# Your own profile
+GET /api/users/1234/profile → 200 OK (your data)
+
+# Attacker changes ID
+GET /api/users/1235/profile → 200 OK (someone else&amp;#39;s data!)&lt;/code&gt;&lt;/pre&gt;
+ &lt;/div&gt;&lt;h2 id="why-idor-pays-so-well"&gt;Why IDOR Pays So Well&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;High impact:&lt;/strong&gt; Access to other users&amp;rsquo; private data&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Easy to demonstrate:&lt;/strong&gt; Just change a number&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Consistent payouts:&lt;/strong&gt; $500-$25,000 across platforms&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;High frequency:&lt;/strong&gt; Found in almost every web application&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="types-of-idor"&gt;Types of IDOR&lt;/h2&gt;
+&lt;h3 id="1-horizontal-idor"&gt;1. Horizontal IDOR&lt;/h3&gt;
+&lt;p&gt;Access another user&amp;rsquo;s data at the same privilege level.&lt;/p&gt;</description></item><item><title>Top 10 Bug Bounty Tools You Need in 2026</title><link>https://sechunter.github.io/tools/top-10-tools/</link><pubDate>Wed, 17 Jun 2026 00:00:00 +0000</pubDate><guid>https://sechunter.github.io/tools/top-10-tools/</guid><description>&lt;h1 id="top-10-bug-bounty-tools-for-2026"&gt;Top 10 Bug Bounty Tools for 2026&lt;/h1&gt;
+&lt;p&gt;Every hunter needs a solid toolkit. Here are the 10 essential tools for bug bounty hunting — all free and open source.&lt;/p&gt;
+&lt;h2 id="1-curl--http-swiss-army-knife"&gt;1. curl — HTTP Swiss Army Knife&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;What:&lt;/strong&gt; Command-line HTTP client
+&lt;strong&gt;Use:&lt;/strong&gt; API testing, sending custom requests, debugging
+&lt;strong&gt;Why:&lt;/strong&gt; Available on every system, scriptable, supports all HTTP methods&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;button class="code-copy" type="button" hidden aria-label="Copy code to clipboard"&gt;
+ &lt;span class="code-copy-label" aria-hidden="true"&gt;Copy&lt;/span&gt;
+ &lt;/button&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# Basic request&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;curl https://target.com/api/users/1
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# With headers&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;curl -H &lt;span style="color:#e6db74"&gt;&amp;#34;Authorization: Bearer ***&amp;#34;&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; -H &lt;span style="color:#e6db74"&gt;&amp;#34;Content-Type: application/json&amp;#34;&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; https://target.com/api/users/1
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# POST request&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;curl -X POST -d &lt;span style="color:#e6db74"&gt;&amp;#39;{&amp;#34;name&amp;#34;:&amp;#34;test&amp;#34;}&amp;#39;&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; https://target.com/api/users&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;h2 id="2-nmap--network-scanner"&gt;2. nmap — Network Scanner&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;What:&lt;/strong&gt; Port scanner and service detector
+&lt;strong&gt;Use:&lt;/strong&gt; Finding open ports, identifying services
+&lt;strong&gt;Why:&lt;/strong&gt; Essential for recon, finds attack surface&lt;/p&gt;</description></item></channel></rss>

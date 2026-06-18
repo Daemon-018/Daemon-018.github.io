@@ -1,0 +1,48 @@
+baseURL = 'https://sechunter.github.io'
+languageCode = 'en-us'
+title = 'SecHunter — Bug Bounty & Security Research'
+theme = 'ananke'
+
+[params]
+  author = 'SecHunter'
+  description = 'Bug bounty hunting, penetration testing, security research, and ethical hacking tutorials'
+  twitter = '@sechunter'
+  github = 'sechunter'
+  linkedin = 'sechunter'
+  email = 'sechunter@protonmail.com'
+  showReadingTime = true
+  showShareButtons = true
+  showBreadcrumbs = true
+
+[menu]
+  [[menu.main]]
+    name = 'Home'
+    url = '/'
+    weight = 1
+  [[menu.main]]
+    name = 'Bug Bounty'
+    url = '/bug-bounty/'
+    weight = 2
+  [[menu.main]]
+    name = 'Tutorials'
+    url = '/tutorials/'
+    weight = 3
+  [[menu.main]]
+    name = 'Tools'
+    url = '/tools/'
+    weight = 4
+  [[menu.main]]
+    name = 'Writeups'
+    url = '/writeups/'
+    weight = 5
+  [[menu.main]]
+    name = 'About'
+    url = '/about/'
+    weight = 6
+
+[taxonomies]
+  tag = 'tags'
+  category = 'categories'
+
+[outputs]
+  home = ['HTML', 'RSS', 'JSON']

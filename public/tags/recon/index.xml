@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Recon on SecHunter — Bug Bounty &amp; Security Research</title><link>https://sechunter.github.io/tags/recon/</link><description>Recent content in Recon on SecHunter — Bug Bounty &amp; Security Research</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 17 Jun 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://sechunter.github.io/tags/recon/index.xml" rel="self" type="application/rss+xml"/><item><title>Top 10 Bug Bounty Tools You Need in 2026</title><link>https://sechunter.github.io/tools/top-10-tools/</link><pubDate>Wed, 17 Jun 2026 00:00:00 +0000</pubDate><guid>https://sechunter.github.io/tools/top-10-tools/</guid><description>&lt;h1 id="top-10-bug-bounty-tools-for-2026"&gt;Top 10 Bug Bounty Tools for 2026&lt;/h1&gt;
+&lt;p&gt;Every hunter needs a solid toolkit. Here are the 10 essential tools for bug bounty hunting — all free and open source.&lt;/p&gt;
+&lt;h2 id="1-curl--http-swiss-army-knife"&gt;1. curl — HTTP Swiss Army Knife&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;What:&lt;/strong&gt; Command-line HTTP client
+&lt;strong&gt;Use:&lt;/strong&gt; API testing, sending custom requests, debugging
+&lt;strong&gt;Why:&lt;/strong&gt; Available on every system, scriptable, supports all HTTP methods&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;button class="code-copy" type="button" hidden aria-label="Copy code to clipboard"&gt;
+ &lt;span class="code-copy-label" aria-hidden="true"&gt;Copy&lt;/span&gt;
+ &lt;/button&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# Basic request&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;curl https://target.com/api/users/1
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# With headers&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;curl -H &lt;span style="color:#e6db74"&gt;&amp;#34;Authorization: Bearer ***&amp;#34;&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; -H &lt;span style="color:#e6db74"&gt;&amp;#34;Content-Type: application/json&amp;#34;&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; https://target.com/api/users/1
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# POST request&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;curl -X POST -d &lt;span style="color:#e6db74"&gt;&amp;#39;{&amp;#34;name&amp;#34;:&amp;#34;test&amp;#34;}&amp;#39;&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; https://target.com/api/users&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;&lt;h2 id="2-nmap--network-scanner"&gt;2. nmap — Network Scanner&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;What:&lt;/strong&gt; Port scanner and service detector
+&lt;strong&gt;Use:&lt;/strong&gt; Finding open ports, identifying services
+&lt;strong&gt;Why:&lt;/strong&gt; Essential for recon, finds attack surface&lt;/p&gt;</description></item></channel></rss>

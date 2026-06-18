@@ -1,0 +1,65 @@
+name: SecHunter AI Blog Engine
+on:
+  schedule:
+    - cron: '30 0 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "ai-blog"
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install requests python-dateutil
+      - name: Generate AI post
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: python3 scripts/generate-post.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ai-post
+          path: content/posts/
+          retention-days: 7
+
+  deploy:
+    needs: generate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - uses: actions/download-artifact@v4
+        with:
+          name: ai-post
+          path: content/posts/
+      - uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: '0.128.0'
+          extended: true
+      - run: hugo --minify
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+      - uses: actions/deploy-pages@v4
+      - name: Commit
+        run: |
+          git config user.name "SecHunter AI"
+          git config user.email "ai@daemon018.com"
+          git add -A
+          git commit -m "AI Post: $(date +%Y-%m-%d)" || true
+          git push || true

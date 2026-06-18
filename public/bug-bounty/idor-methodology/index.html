@@ -1,0 +1,79 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1"><title>IDOR Hunting Methodology — How to Find Insecure Direct Object References | SecHunter — Bug Bounty & Security Research</title><meta name=viewport content="width=device-width,minimum-scale=1"><meta name=description content="Complete guide to finding IDOR vulnerabilities in web applications and APIs. Methodology, tools, and real-world examples."><meta name=generator content="Hugo 0.163.2"><meta name=robots content="index, follow"><meta name=author content="SecHunter"><link rel=stylesheet href=/ananke/css/main.02a37ad6c4e155c542d276915a0e3f83f5c7c5fec443350f6e60753f1679b7a7.css integrity="sha256-AqN61sThVcVC0naRWg4/g/XHxf7EQzUPbmB1PxZ5t6c=" crossorigin=anonymous><script>(function(){"use strict";function t(){for(var t=document.querySelectorAll(".code-block .code-copy[hidden]"),e=0;e<t.length;e++)t[e].hidden=!1}document.readyState==="loading"?document.addEventListener("DOMContentLoaded",t):t();function e(e){var t=e.querySelector(".code-copy-label"),n=t?t.textContent:null;e.classList.add("is-copied"),t&&(t.textContent="Copied"),window.setTimeout(function(){e.classList.remove("is-copied"),t&&n!==null&&(t.textContent=n)},2e3)}function n(e){var n,t=document.createElement("textarea");t.value=e,t.setAttribute("readonly",""),t.style.position="absolute",t.style.left="-9999px",document.body.appendChild(t),t.select(),n=!1;try{n=document.execCommand("copy")}catch{n=!1}return document.body.removeChild(t),n}function s(t){var s,o,a,i=t.closest(".code-block");if(!i)return;if(s=i.querySelector("pre"),!s)return;a=s.querySelector("code")||s,o=a.innerText,navigator.clipboard&&navigator.clipboard.writeText?navigator.clipboard.writeText(o).then(function(){e(t)},function(){n(o)&&e(t)}):n(o)&&e(t)}document.addEventListener("click",function(e){var t=e.target.closest(".code-copy");t&&s(t)})})()</script><link rel=canonical href=https://sechunter.github.io/bug-bounty/idor-methodology/><meta property="og:url" content="https://sechunter.github.io/bug-bounty/idor-methodology/"><meta property="og:site_name" content="SecHunter — Bug Bounty & Security Research"><meta property="og:title" content="IDOR Hunting Methodology — How to Find Insecure Direct Object References"><meta property="og:description" content="Complete guide to finding IDOR vulnerabilities in web applications and APIs. Methodology, tools, and real-world examples."><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="bug-bounty"><meta property="article:published_time" content="2026-06-17T00:00:00+00:00"><meta property="article:modified_time" content="2026-06-17T00:00:00+00:00"><meta property="article:tag" content="Idor"><meta property="article:tag" content="Api-Security"><meta property="article:tag" content="Methodology"><meta property="article:tag" content="Bug-Bounty"><meta itemprop=name content="IDOR Hunting Methodology — How to Find Insecure Direct Object References"><meta itemprop=description content="Complete guide to finding IDOR vulnerabilities in web applications and APIs. Methodology, tools, and real-world examples."><meta itemprop=datePublished content="2026-06-17T00:00:00+00:00"><meta itemprop=dateModified content="2026-06-17T00:00:00+00:00"><meta itemprop=wordCount content="603"><meta itemprop=keywords content="Idor,Api-Security,Methodology,Bug-Bounty"><meta name=twitter:card content="summary"><meta name=twitter:title content="IDOR Hunting Methodology — How to Find Insecure Direct Object References"><meta name=twitter:description content="Complete guide to finding IDOR vulnerabilities in web applications and APIs. Methodology, tools, and real-world examples."></head><body class="ma0 avenir bg-near-white production is-page is-page page-idor-methodology"><header><div class=bg-black><nav class="pv3 ph3 ph4-ns" role=navigation><div class="flex-l center items-center justify-between"><a href=/ class="f3 fw2 hover-white white-90 dib no-underline">SecHunter — Bug Bounty & Security Research</a><div class="flex-l items-center"><ul class="pl0 mr3"><li class="list f5 f4-ns fw4 dib pr3"><a class="hover-white white-90 no-underline" href=/ title="Home page">Home</a></li><li class="list f5 f4-ns fw4 dib pr3"><a class="hover-white white-90 no-underline" href=/bug-bounty/ title="Bug Bounty page">Bug Bounty</a></li><li class="list f5 f4-ns fw4 dib pr3"><a class="hover-white white-90 no-underline" href=/tutorials/ title="Tutorials page">Tutorials</a></li><li class="list f5 f4-ns fw4 dib pr3"><a class="hover-white white-90 no-underline" href=/tools/ title="Tools page">Tools</a></li><li class="list f5 f4-ns fw4 dib pr3"><a class="hover-white white-90 no-underline" href=/writeups/ title="Writeups page">Writeups</a></li><li class="list f5 f4-ns fw4 dib pr3"><a class="hover-white white-90 no-underline" href=/about/ title="About page">About</a></li></ul><div class=ananke-socials></div></div></div></nav></div></header><main class=pb7 role=main><article class="page-idor-methodology flex-l mw7 center ph3 flex-wrap justify-between"><header class="mt4 w-100"><aside class="instapaper_ignoref b helvetica tracked ttu"><a class="link dim" href=https://sechunter.github.io/bug-bounty/>Bug-Bounties</a></aside><div id=sharing class="mt3 ananke-socials"></div><h1 class="f1 athelas mt3 mb1">IDOR Hunting Methodology — How to Find Insecure Direct Object References</h1><p class=tracked><strong>SecHunter</strong></p><time class="f6 mv4 dib tracked" datetime=2026-06-17T00:00:00Z>June 17, 2026</time></header><div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-100-l"><h1 id=idor-hunting-methodology>IDOR Hunting Methodology</h1><p>IDOR (Insecure Direct Object Reference) is the #1 most rewarded vulnerability class in bug bounty programs. It&rsquo;s simple to find, easy to explain, and has high impact.</p><h2 id=what-is-idor>What is IDOR?</h2><p>IDOR occurs when an application uses user-supplied input to directly access an object without verifying that the user is authorized to access it.</p><p><strong>Example:</strong></p><div class=code-block><button class=code-copy type=button hidden aria-label="Copy code to clipboard">
+<span class=code-copy-label aria-hidden=true>Copy</span></button><pre tabindex=0><code># Your own profile
+GET /api/users/1234/profile → 200 OK (your data)
+
+# Attacker changes ID
+GET /api/users/1235/profile → 200 OK (someone else&#39;s data!)</code></pre></div><h2 id=why-idor-pays-so-well>Why IDOR Pays So Well</h2><ul><li><strong>High impact:</strong> Access to other users&rsquo; private data</li><li><strong>Easy to demonstrate:</strong> Just change a number</li><li><strong>Consistent payouts:</strong> $500-$25,000 across platforms</li><li><strong>High frequency:</strong> Found in almost every web application</li></ul><h2 id=types-of-idor>Types of IDOR</h2><h3 id=1-horizontal-idor>1. Horizontal IDOR</h3><p>Access another user&rsquo;s data at the same privilege level.</p><div class=code-block><button class=code-copy type=button hidden aria-label="Copy code to clipboard">
+<span class=code-copy-label aria-hidden=true>Copy</span></button><pre tabindex=0><code>GET /api/orders/1001 → Your order
+GET /api/orders/1002 → Someone else&#39;s order</code></pre></div><h3 id=2-vertical-idor>2. Vertical IDOR</h3><p>Access data at a higher privilege level.</p><div class=code-block><button class=code-copy type=button hidden aria-label="Copy code to clipboard">
+<span class=code-copy-label aria-hidden=true>Copy</span></button><pre tabindex=0><code>GET /api/users/1234 → Your profile
+GET /api/admin/settings → Admin settings (should be blocked)</code></pre></div><h3 id=3-bulk-idor>3. Bulk IDOR</h3><p>Access many users&rsquo; data at once.</p><div class=code-block><button class=code-copy type=button hidden aria-label="Copy code to clipboard">
+<span class=code-copy-label aria-hidden=true>Copy</span></button><pre tabindex=0><code>GET /api/users?id=1,2,3,4,5 → Multiple users&#39; data</code></pre></div><h2 id=methodology>Methodology</h2><h3 id=step-1-create-two-accounts>Step 1: Create Two Accounts</h3><ul><li>Account A (attacker)</li><li>Account B (victim)</li></ul><h3 id=step-2-map-the-application>Step 2: Map the Application</h3><ul><li>Browse all features as Account A</li><li>Note all API endpoints and parameters</li><li>Record all IDs (user IDs, order IDs, message IDs, etc.)</li></ul><h3 id=step-3-test-each-endpoint>Step 3: Test Each Endpoint</h3><p>For each endpoint that takes an ID parameter:</p><ol><li><strong>Replace your ID with another user&rsquo;s ID</strong></li><li><strong>Change numeric IDs sequentially</strong> (1001, 1002, 1003&mldr;)</li><li><strong>Test with UUIDs</strong> (if applicable)</li><li><strong>Try negative numbers, zero, very large numbers</strong></li><li><strong>Test array parameters</strong> (id[]=1&amp;id[]=2)</li></ol><h3 id=step-4-document-findings>Step 4: Document Findings</h3><ul><li>Record the exact request/response</li><li>Show that Account B&rsquo;s data is accessible</li><li>Explain the business impact</li></ul><h2 id=common-idor-locations>Common IDOR Locations</h2><table><thead><tr><th>Location</th><th>Example</th></tr></thead><tbody><tr><td>URL parameters</td><td><code>/api/users/{id}</code></td></tr><tr><td>POST body</td><td><code>{"user_id": 1234}</code></td></tr><tr><td>Cookies</td><td><code>user_id=1234</code></td></tr><tr><td>Headers</td><td><code>X-User-ID: 1234</code></td></tr><tr><td>GraphQL queries</td><td><code>query { user(id: 1234) { email } }</code></td></tr></tbody></table><h2 id=tools-for-idor-hunting>Tools for IDOR Hunting</h2><h3 id=manual-testing>Manual Testing</h3><div class=code-block><button class=code-copy type=button hidden aria-label="Copy code to clipboard">
+<span class=code-copy-label aria-hidden=true>Copy</span></button><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Test with Account A&#39;s token</span>
+</span></span><span style=display:flex><span>curl -H <span style=color:#e6db74>&#34;Authorization: Bearer TOKEN_A&#34;</span> <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  https://api.target.com/users/1234
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Test with Account B&#39;s ID</span>
+</span></span><span style=display:flex><span>curl -H <span style=color:#e6db74>&#34;Authorization: Bearer TOKEN_A&#34;</span> <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  https://api.target.com/users/1235</span></span></code></pre></div></div><h3 id=automated-testing>Automated Testing</h3><p>Use Burp Suite&rsquo;s Authz extension or custom scripts to swap tokens automatically.</p><h2 id=real-world-examples>Real-World Examples</h2><h3 id=example-1-order-access>Example 1: Order Access</h3><div class=code-block><button class=code-copy type=button hidden aria-label="Copy code to clipboard">
+<span class=code-copy-label aria-hidden=true>Copy</span></button><pre tabindex=0><code>GET /api/orders/1001 → Your order details
+GET /api/orders/1002 → Someone else&#39;s order (name, address, items)</code></pre></div><p><strong>Impact:</strong> PII exposure, order manipulation
+<strong>Payout:</strong> $500-$5,000</p><h3 id=example-2-message-access>Example 2: Message Access</h3><div class=code-block><button class=code-copy type=button hidden aria-label="Copy code to clipboard">
+<span class=code-copy-label aria-hidden=true>Copy</span></button><pre tabindex=0><code>GET /api/messages/5001 → Your messages
+GET /api/messages/5002 → Someone else&#39;s private messages</code></pre></div><p><strong>Impact:</strong> Private communication exposure
+<strong>Payout:</strong> $1,000-$10,000</p><h3 id=example-3-document-access>Example 3: Document Access</h3><div class=code-block><button class=code-copy type=button hidden aria-label="Copy code to clipboard">
+<span class=code-copy-label aria-hidden=true>Copy</span></button><pre tabindex=0><code>GET /api/documents/3001 → Your documents
+GET /api/documents/3002 → Someone else&#39;s confidential documents</code></pre></div><p><strong>Impact:</strong> Confidential data exposure
+<strong>Payout:</strong> $2,000-$25,000</p><h2 id=tips-for-success>Tips for Success</h2><ol><li><strong>Focus on high-value endpoints</strong> — orders, messages, documents, profiles</li><li><strong>Test both read and write</strong> — can you also modify/delete?</li><li><strong>Check for IDOR in state-changing operations</strong> — PUT, DELETE, POST</li><li><strong>Look for IDOR in exports</strong> — CSV, PDF exports often leak data</li><li><strong>Test cross-tenant access</strong> — can you access another organization&rsquo;s data?</li></ol><h2 id=report-template>Report Template</h2><div class=code-block><button class=code-copy type=button hidden aria-label="Copy code to clipboard">
+<span class=code-copy-label aria-hidden=true>Copy</span></button><pre tabindex=0><code>Title: IDOR on /api/orders/{id} allows accessing any user&#39;s orders
+
+Description:
+The /api/orders/{id} endpoint does not verify that the
+authenticated user owns the requested order ID. An attacker
+can enumerate order IDs and access any user&#39;s order details.
+
+Steps to Reproduce:
+1. Log in as Account A (attacker)
+2. Note your order ID: 1001
+3. Change the ID to 1002 (victim&#39;s order)
+4. Send: GET /api/orders/1002
+5. Response contains victim&#39;s PII
+
+Impact:
+- Access to any user&#39;s order history
+- PII exposure (name, address, phone, email)
+- Potential for order manipulation
+
+Remediation:
+Verify that the authenticated user owns the requested
+order ID before returning data.</code></pre></div><hr><p><em>Happy hunting! Remember: IDOR is everywhere. You just need to look.</em></p><ul class=pa0><li class="list di"><a href=/categories/bug-bounty/ class="link f5 grow br-pill ba ph3 pv2 mb2 dib black sans-serif no-underline">Bug Bounty</a></li><li class="list di"><a href=/categories/methodology/ class="link f5 grow br-pill ba ph3 pv2 mb2 dib black sans-serif no-underline">Methodology</a></li></ul><ul class=pa0><li class="list di"><a href=/tags/idor/ class="link f5 grow br-pill ba ph3 pv2 mb2 dib black sans-serif no-underline">Idor</a></li><li class="list di"><a href=/tags/api-security/ class="link f5 grow br-pill ba ph3 pv2 mb2 dib black sans-serif no-underline">Api-Security</a></li><li class="list di"><a href=/tags/methodology/ class="link f5 grow br-pill ba ph3 pv2 mb2 dib black sans-serif no-underline">Methodology</a></li><li class="list di"><a href=/tags/bug-bounty/ class="link f5 grow br-pill ba ph3 pv2 mb2 dib black sans-serif no-underline">Bug-Bounty</a></li></ul></div></article></main><footer class="bg-black bottom-0 w-100 pa3" role=contentinfo><div class="flex justify-between"><a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href=https://sechunter.github.io/>&copy; SecHunter — Bug Bounty & Security Research 2026</a><div><div class=ananke-socials></div></div></div></footer></body></html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,14 @@
+# robots.txt for SecHunter Blog
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://sechunter.github.io/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1
+
+# Disallow admin/disallow paths
+Disallow: /admin/
+Disallow: /draft/
+Disallow: /private/
